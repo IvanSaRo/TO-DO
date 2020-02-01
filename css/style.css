@@ -57,9 +57,16 @@ article{
 
 
 
-.azul div a{
-    padding-top: 0.5em;
+i{
+    padding-top: 0.8em;
+    display: inline-block;
 }
+
+i:hover{
+    background-color: indigo;
+}
+
+
  
 
 

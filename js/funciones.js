@@ -10,7 +10,7 @@ var listaTareas = new Array();
 ]; */
 
 
-var id = 2;
+
 
 
 /* <article id="1" class="urgente row">
@@ -32,6 +32,8 @@ btnGuardar.addEventListener('click', e => {
 
     var texto = document.getElementById('tituloTarea').value;
 
+
+
     cargarDatos(texto, prioridad);
 
 
@@ -45,6 +47,7 @@ btnGuardar.addEventListener('click', e => {
 
 
 function cargarDatos(pTexto, pPrioridad) {
+    let id = 2;
     let guardado = {
         'idTarea': id,
         'titulo': pTexto,
@@ -62,11 +65,11 @@ function cargarDatos(pTexto, pPrioridad) {
 function crearArt(pGuardado) {
     /* console.log(pGuardado.prioridad); */
     var contador = 1;
-
+    console.log(pGuardado);
     var article = document.createElement('article');
     var h2 = document.createElement('h2');
-    var div = document.createElement('div');
-    var a = document.createElement('a');
+
+    var i = document.createElement('i');
 
     article.className = 'urgente row';
     article.id = contador;
@@ -83,18 +86,18 @@ function crearArt(pGuardado) {
     }
     h2.className = `col-xl-11 col-md-9 col-7 ${color1}`;
 
-    div.className = `col-xl-1 col-md-3 col-5 ${color2}`;
+    i.className = `col-xl-1 col-md-3 col-5 ${color2} fas fa-trash-alt`;
 
 
 
-    a.className = 'fas fa-trash-alt';
+
 
     var titulo = document.createTextNode(pGuardado.titulo);
     h2.appendChild(titulo);
 
     article.appendChild(h2);
-    article.appendChild(div);
-    div.appendChild(a);
+    article.appendChild(i);
+
 
 
 
@@ -108,4 +111,15 @@ function pintarArt(pArticle) {
     seccion.appendChild(pArticle);
 }
 
-//1 una función que recoja los datos dados por formulario
+
+var papelera = document.querySelectorAll('.fas');
+
+papelera.addEventListener('click', borrarArt());
+
+
+
+
+
+function borrarArt(e) {
+    console.log(e);
+}
