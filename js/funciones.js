@@ -51,7 +51,7 @@ function cargarDatos(pTexto, pPrioridad) {
         'prioridad': pPrioridad
     }
     listaTareas.push(guardado);
-    pintarArt(guardado);
+    crearArt(guardado);
 
     id++;
 
@@ -59,7 +59,7 @@ function cargarDatos(pTexto, pPrioridad) {
 
 
 
-function pintarArt(pGuardado) {
+function crearArt(pGuardado) {
     /* console.log(pGuardado.prioridad); */
     var contador = 1;
 
@@ -70,15 +70,20 @@ function pintarArt(pGuardado) {
 
     article.className = 'urgente row';
     article.id = contador;
-
+    console.log(pGuardado.prioridad);
     if (pGuardado.prioridad == 'diaria') {
-        h2.className = 'col-xl-11 col-md-9 col-7 naranja';
-
-        div.className = 'col-xl-1 col-md-3 col-5 azul';
-
-
+        var color1 = `naranja`;
+        var color2 = `azul`;
+    } else if (pGuardado.prioridad == 'mensual') {
+        var color1 = `verde`;
+        var color2 = `amarillo`;
+    } else if (pGuardado.prioridad == 'urgente') {
+        var color1 = `rojo`;
+        var color2 = `negro`;
     }
+    h2.className = `col-xl-11 col-md-9 col-7 ${color1}`;
 
+    div.className = `col-xl-1 col-md-3 col-5 ${color2}`;
 
 
 
@@ -91,10 +96,16 @@ function pintarArt(pGuardado) {
     article.appendChild(div);
     div.appendChild(a);
 
-    var seccion = document.getElementById('tareas');
 
-    seccion.appendChild(article);
+
     contador++;
+    pintarArt(article);
+}
+
+
+function pintarArt(pArticle) {
+    var seccion = document.getElementById('tareas');
+    seccion.appendChild(pArticle);
 }
 
 //1 una función que recoja los datos dados por formulario

@@ -29,7 +29,30 @@ article{
     background-color: blue;
     color: white;
     text-align: center;
-    width: 50%;
+}
+
+.verde{
+    background-color: green;
+    color: white;
+    margin-bottom: 0;
+}
+
+.amarillo{
+    background-color: yellow;
+    color: white;
+    text-align: center;
+}
+
+.rojo{
+    background-color: red;
+    color: white;
+    margin-bottom: 0;
+}
+
+.negro{
+    background-color: black;
+    color: white;
+    text-align: center;
 }
 
 
