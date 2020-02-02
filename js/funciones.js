@@ -46,7 +46,7 @@ btnGuardar.addEventListener('click', e => {
 
 
 
-function cargarDatos(pTexto, pPrioridad) {
+function cargarDatos(pTexto, pPrioridad = 'diaria') {
 
     let guardado = {
         'idTarea': id,
@@ -73,8 +73,9 @@ function crearArt(pGuardado) {
     var papelera = document.createElement('a');
 
     article.className = 'row';
-    let idAjustada = id;
-    article.dataset.id = idAjustada;
+
+    article.dataset.id = id
+
 
 
     if (pGuardado.prioridad == 'diaria') {
@@ -86,6 +87,9 @@ function crearArt(pGuardado) {
     } else if (pGuardado.prioridad == 'urgente') {
         var color1 = `rojo`;
         var color2 = `negro`;
+    } else if (pGuardado.prioridad == 'Selecciona') {
+        var color1 = `naranja`;
+        var color2 = `azul`;
     }
     h2.className = `col-xl-11 col-md-9 col-7 ${color1}`;
 
@@ -110,8 +114,8 @@ function crearArt(pGuardado) {
 
 
     pintarArt(article);
-    console.log(article.id);
-    console.log(pGuardado.idTarea);
+    /* console.log(article.id);
+    console.log(pGuardado.idTarea); */
 }
 
 var seccion = document.getElementById('tareas');
@@ -127,12 +131,13 @@ function pintarArt(pArticle) {
 
 
 
-    seccion.appendChild(pArticle);
+
 
     /* subirId(); */
-
-
-
+    var ultimo = listaTareas[listaTareas.length - 1];
+    console.log(ultimo);
+    filtrarPrioridad(ultimo);
+    seccion.appendChild(pArticle);
 }
 
 /* function subirId() {
@@ -146,11 +151,50 @@ function borrarArt(e) {
 
     let numerito = e.target.parentElement.parentElement.id;
     console.log(numerito);
+    let divBorrar = document.getElementById(numerito)
     for (let i = 0; i < listaTareas.length; i++) {
-        if (listaTareas[i].idTarea == numerito) {
-            let divBorrar = document.getElementById(numerito)
+        if (listaTareas[i].idTarea == divBorrar.id) {
+
             divBorrar.parentNode.removeChild(divBorrar);
+
+            var listaBorrada = new Array();
+            listaBorrada = listaTareas.splice(numerito, 1);
+
         }
+
+    }
+
+}
+
+
+var prioridad = document.getElementById('prioridadSelect');
+//prioridad.addEventListener('click', filtrarPrioridad);
+
+var btnBuscar = document.getElementById('search');
+var campo = btnBuscar.innerText;
+
+var listaDiaria = new Array();
+var listaMensual = new Array();
+var listaUrgente = new Array();
+
+
+function filtrarPrioridad(ultimo) {
+
+    /* for (let i = 0; i < listaTareas.length; i++) */
+
+
+
+    if (ultimo.prioridad == "diaria") {
+        listaDiaria.push(ultimo);
+        return listaDiaria;
+
+    } else if (ultimo.prioridad == "mensual") {
+        listaMensual.push(ultimo);
+        return listaMensual;
+
+    } else if (ultimo.prioridad == "urgente") {
+        listaUrgente.push(ultimo);
+        return listaUrgente;
 
     }
 
@@ -159,6 +203,31 @@ function borrarArt(e) {
 }
 
 
-/* let child = document.getElementById(pId);
-tareas.removeChild(child); */
+function filtrarBusqueda(pListaPacientes, pPalabraBuscar) {
 
+    var listaFiltrada = new Array();
+
+    listaFiltrada = pListaPacientes.filter(paciente => {
+        var nombrePaciente = paciente.nombre.toLowerCase();
+        var apellidoPaciente = paciente.apellido.toLowerCase();
+
+        return nombrePaciente.includes(pPalabraBuscar) || apellidoPaciente.includes(pPalabraBuscar);
+    })
+
+
+    return listaFiltrada;
+
+}
+
+
+function pintarfiltrar(pLista) {
+
+}
+
+    //  console.log(e.target.value);
+
+
+
+
+/* listaApoyo = listaultimos;
+            crearArt(listaTareas[i]); */
