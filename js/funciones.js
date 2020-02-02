@@ -1,5 +1,5 @@
 var listaTareas = new Array();
-
+id = 0;
 /* listaTareas = [
     {
         'idTarea': 1,
@@ -47,33 +47,36 @@ btnGuardar.addEventListener('click', e => {
 
 
 function cargarDatos(pTexto, pPrioridad) {
-    let id = 2;
+
     let guardado = {
         'idTarea': id,
         'titulo': pTexto,
         'prioridad': pPrioridad
     }
     listaTareas.push(guardado);
+
     crearArt(guardado);
 
-    id++;
+    return id++;
 
 }
 
 
 
 function crearArt(pGuardado) {
-    /* console.log(pGuardado.prioridad); */
-    var contador = 1;
-    console.log(pGuardado);
+
+
+
     var article = document.createElement('article');
     var h2 = document.createElement('h2');
+    var caja = document.createElement('div');
+    var papelera = document.createElement('a');
 
-    var i = document.createElement('i');
+    article.className = 'row';
+    let idAjustada = id;
+    article.dataset.id = idAjustada;
 
-    article.className = 'urgente row';
-    article.id = contador;
-    console.log(pGuardado.prioridad);
+
     if (pGuardado.prioridad == 'diaria') {
         var color1 = `naranja`;
         var color2 = `azul`;
@@ -86,7 +89,9 @@ function crearArt(pGuardado) {
     }
     h2.className = `col-xl-11 col-md-9 col-7 ${color1}`;
 
-    i.className = `col-xl-1 col-md-3 col-5 ${color2} fas fa-trash-alt`;
+    caja.className = `col-xl-1 col-md-3 col-5 ${color2}`;
+
+    papelera.className = `fas fa-trash-alt`;
 
 
 
@@ -96,30 +101,64 @@ function crearArt(pGuardado) {
     h2.appendChild(titulo);
 
     article.appendChild(h2);
-    article.appendChild(i);
+    article.appendChild(caja);
+    article.id = id;
+
+    caja.appendChild(papelera);
+    //console.log(article);
+    papelera.addEventListener('click', borrarArt);
 
 
-
-
-    contador++;
     pintarArt(article);
+    console.log(article.id);
+    console.log(pGuardado.idTarea);
 }
+
+var seccion = document.getElementById('tareas');
 
 
 function pintarArt(pArticle) {
-    var seccion = document.getElementById('tareas');
+
+    //pArticle.innerHTML += "onclick='borrarArt(this)'"
+
+    // console.log(pArticle.innerHTML);
+
+
+
+
+
     seccion.appendChild(pArticle);
+
+    /* subirId(); */
+
+
+
 }
 
-
-var papelera = document.querySelectorAll('.fas');
-
-papelera.addEventListener('click', borrarArt());
-
-
-
+/* function subirId() {
+    return id += 1;
+} */
 
 
 function borrarArt(e) {
-    console.log(e);
+
+
+
+    let numerito = e.target.parentElement.parentElement.id;
+    console.log(numerito);
+    for (let i = 0; i < listaTareas.length; i++) {
+        if (listaTareas[i].idTarea == numerito) {
+            let divBorrar = document.getElementById(numerito)
+            divBorrar.parentNode.removeChild(divBorrar);
+        }
+
+    }
+
+
+
 }
+
+
+/* let child = document.getElementById(pId);
+tareas.removeChild(child); */
+
