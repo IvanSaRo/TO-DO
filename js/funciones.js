@@ -152,6 +152,7 @@ function borrarArt(e) {
 
             var listaBorrada = new Array();
             listaBorrada = listaTareas.splice(numerito, 1);
+            listaFiltrada = listaTareas.splice(numerito, 1);
 
         }
 
@@ -165,22 +166,60 @@ function borrarArt(e) {
 
 
 
-var prioridad = document.getElementById('prioridadSelect');
-prioridad.addEventListener('click', filtrarPrioridad);
-
-var btnBuscar = document.getElementById('search');
-var campo = btnBuscar.innerText;
-
-var listaDiaria = new Array();
-var listaMensual = new Array();
-var listaUrgente = new Array();
 
 
-function filtrarPrioridad(ultimo) {
+
+
+
+function filtrarPrioridad() {
 
     //filtrar el array e imprimir los que necesite, nada de crear otro array
 
 }
+
+// La lista filtrada es igual a la lista de tareas original
+let listaFiltrada = listaTareas;
+var select = document.getElementById('prioridadSelect');
+var inputTitle = document.getElementById('search');
+
+select.addEventListener('change', (e) => {
+    listaFiltrada = filtrarPorPrioridad(e.target.value);
+    if (e.target.value == "Todas") {
+        pintarTareasFilt(listaTareas)
+    } else {
+        pintarTareasFilt(listaFiltrada);
+    }
+
+});
+inputTitle.addEventListener('input', (e) => {
+    listaFiltrada = filtrarPorTitulo(inputTitle.value);
+    pintarTareasFilt(listaFiltrada);
+});
+function pintarTareasFilt(pLista) {
+    seccion.innerHTML = "";
+    for (let i = 0; i < pLista.length; i++) {
+        crearArt(pLista[i]);
+
+    }
+}
+function filtrarPorPrioridad(priority) {
+    let arr = listaTareas.filter((tarea) => {
+        return tarea.prioridad === priority;
+
+    });
+    console.log(arr)
+    return arr;
+}
+function filtrarPorTitulo(pTitulo) {
+    let arr = listaFiltrada.filter((tarea) => {
+        return tarea.titulo.includes(pTitulo);
+    })
+    return arr;
+}
+
+
+
+
 
 
 
