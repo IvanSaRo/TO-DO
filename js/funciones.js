@@ -160,6 +160,12 @@ function borrarArt(e) {
 
 }
 
+btnBorr = document.getElementById('borrartodo');
+btnBorr.addEventListener('click', borrarTodo);
+
+function borrarTodo(e) {
+    seccion.innerHTML = "";
+}
 
 
 ////// FILTRADO ///////
