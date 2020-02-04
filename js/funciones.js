@@ -184,7 +184,7 @@ function filtrarPrioridad() {
 }
 
 // La lista filtrada es igual a la lista de tareas original
-let listaFiltrada = listaTareas;
+let listaFiltrada = [...listaTareas];
 var select = document.getElementById('prioridadSelect');
 var inputTitle = document.getElementById('search');
 
@@ -199,7 +199,12 @@ select.addEventListener('change', (e) => {
 });
 inputTitle.addEventListener('input', (e) => {
     listaFiltrada = filtrarPorTitulo(inputTitle.value);
-    pintarTareasFilt(listaFiltrada);
+    console.log(inputTitle.value)
+    if (inputTitle == "") {
+        pintarTareasFilt(listaTareas);
+    } else {
+        pintarTareasFilt(listaFiltrada);
+    }
 });
 function pintarTareasFilt(pLista) {
     seccion.innerHTML = "";
@@ -213,18 +218,33 @@ function filtrarPorPrioridad(priority) {
         return tarea.prioridad === priority;
 
     });
-    console.log(arr)
+
     return arr;
 }
 function filtrarPorTitulo(pTitulo) {
-    let arr = listaFiltrada.filter((tarea) => {
+
+    let arr = listaTareas.filter((tarea) => {
         return tarea.titulo.includes(pTitulo);
     })
     return arr;
 }
 
 
+function filtrarBusqueda(pListaPacientes, pPalabraBuscar) {
 
+    var listaFiltrada = new Array();
+
+    listaFiltrada = pListaPacientes.filter(paciente => {
+        var nombrePaciente = paciente.nombre.toLowerCase();
+        var apellidoPaciente = paciente.apellido.toLowerCase();
+
+        return nombrePaciente.includes(pPalabraBuscar) || apellidoPaciente.includes(pPalabraBuscar);
+    })
+
+
+    return listaFiltrada;
+
+}
 
 
 
