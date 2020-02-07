@@ -172,17 +172,6 @@ function borrarTodo(e) {
 
 
 
-
-
-
-
-
-function filtrarPrioridad() {
-
-    //filtrar el array e imprimir los que necesite, nada de crear otro array
-
-}
-
 // La lista filtrada es igual a la lista de tareas original
 let listaFiltrada = [...listaTareas];
 var select = document.getElementById('prioridadSelect');
@@ -222,7 +211,6 @@ function filtrarPorPrioridad(priority) {
     return arr;
 }
 function filtrarPorTitulo(pTitulo) {
-
     let arr = listaTareas.filter((tarea) => {
         return tarea.titulo.includes(pTitulo);
     })

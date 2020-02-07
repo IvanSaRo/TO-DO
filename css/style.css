@@ -38,7 +38,7 @@ article{
 }
 
 .amarillo{
-    background-color: yellow;
+    background-color: brown;
     color: white;
     text-align: center;
 }
@@ -57,12 +57,12 @@ article{
 
 
 
-i{
+a{
     padding-top: 0.8em;
     display: inline-block;
 }
 
-i:hover{
+main section div:hover{
     background-color: indigo;
 }
 
