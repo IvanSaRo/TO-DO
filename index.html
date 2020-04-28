@@ -1,82 +1,83 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>TODO's list</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
 
-<body>
-
+  <body>
     <div id="wrapper">
+      <header>
+        <div class="insert">
+          <form action="#" method="get" id="form">
+            <input
+              type="text"
+              id="tituloTarea"
+              placeholder="Introduce la tarea"
+              onfocus="this.value=''"
+            />
 
-        <header>
-            <div class="insert">
-                <form action="#" method="get">
-                    <input type="text" id="tituloTarea" placeholder="Introduce la tarea" required>
+            <select id="prioridad" required>
+              <option value="Selecciona">Selecciona una prioridad</option>
+              <option value="urgente">Urgente</option>
+              <option value="diaria">Diaria</option>
+              <option value="mensual">Mensual</option>
+            </select>
 
-                    <select id="prioridad" required>
-                        <option value="Selecciona">Selecciona una prioridad</option>
-                        <option value="urgente">Urgente</option>
-                        <option value="diaria">Diaria</option>
-                        <option value="mensual">Mensual</option>
-                    </select>
+            <input type="submit" value="Guardar" id="guardar" />
+            <input type="submit" value="Borrar" id="borrartodo" />
+          </form>
 
-                    <input type="submit" value="Guardar" id="guardar">
-                    <input type="submit" value="Borrar" id="borrartodo">
-                </form>
+          <p id="mensaje"></p>
+        </div>
+        <div class="filter">
+          <select id="prioridadSelect">
+            <option value="Todas">Todas las tareas</option>
+            <option value="urgente">Urgente</option>
+            <option value="diaria">Diaria</option>
+            <option value="mensual">Mensual</option>
+          </select>
 
-                <p id="mensaje"></p>
-            </div>
-            <div class="filter">
-                <select id="prioridadSelect">
-                    <option value="Todas">Todas las tareas</option>
-                    <option value="urgente">Urgente</option>
-                    <option value="diaria">Diaria</option>
-                    <option value="mensual">Mensual</option>
-                </select>
+          <input type="text" placerholder="Tarea a buscar" id="search" />
+        </div>
+      </header>
 
-                <input type="text" placerholder="Tarea a buscar" id="search">
-            </div>
-        </header>
+      <main class="container">
+        <section class="notareas" id="notareas"></section>
+        <section class="tareas" id="tareas"></section>
+      </main>
 
-        <main class="container">
-            <section class="notareas" id="notareas">
-
-            </section>
-            <section class="tareas" id="tareas">
-
-
-                <!-- este contenido hay que comentarlo cuando empeceis a desarrollar el listado de tareas-->
-
-
-
-                <!-- este contenido hay que comentarlo cuando empeceis a desarrollar el listado de tareas-->
-
-            </section>
-        </main>
-
-        <footer>
-            <p>APP TODO's Proyecto Final</p>
-        </footer>
-
-
+      <footer>
+        <p>APP TODO's Proyecto Final</p>
+      </footer>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
     <script src="js/funciones.js"></script>
-</body>
-
+  </body>
 </html>
